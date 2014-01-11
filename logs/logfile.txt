@@ -20,3 +20,4 @@ action: login message: User: jsmith logged in at 01/11/2014 13:08
 action: login message: Admin: smaloney logged in at 01/11/2014 13:09
 action: login message: Admin: smaloney logged in at 01/11/2014 14:38
 action: login message: Admin: smaloney logged in at 01/11/2014 16:54
+action: login message: Admin: smaloney logged in at 01/11/2014 17:47
