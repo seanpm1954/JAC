@@ -77,8 +77,24 @@ UPLOAD_ERR_EXTENSION 		=> "File upload stooped by extension."
             if(move_uploaded_file($this->temp_path, $target_path)){
                 //success
                 //save to database
-
+                $this->project_id=$_POST['project_id'];
+                $this->proj_file_loc=$_POST['proj_file_loc'];
                 //parent::create();
+//
+//                $sql = "insert into ".static::$table_name." (";
+//                $sql .= join(", ",array_keys($attributes));
+//                $sql .= ") values ('";
+//                $sql .= join("' ,'",array_values($attributes));
+//                $sql .= "')";
+//                if($db->query($sql)){
+//                    $this->id = $db->insert_id();
+//                    return true;
+//                }else{
+//                    return false;
+//                }
+
+
+
                 $this->errors[] = "save from here: {$target_path}, pID: {$this->project_id}, loc: {$this->proj_file_loc}";
                 // PUT BACK unset($this->temp_path);
                 return false;

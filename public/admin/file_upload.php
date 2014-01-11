@@ -33,6 +33,8 @@ if(isset($_POST['submit'])){
     <form action="file_upload.php" enctype="multipart/form-data" method="post">
         <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
         <p><input type="file" name="file_upload" /></p>
+        <p><input type="text" name="project_id" placeholder="ID" /></p>
+        <p><input type="text" name="proj_file_loc" placeholder="loc" /></p>
         <input type="submit" name="submit" value="Upload" />
 
     </form>
