@@ -25,11 +25,11 @@ $companies = Company::find_all();
 <table class="bordered">
     <tbody>
     <th>Company</th>
-
+    <?php echo "<th><a href=update_company.php?id=0&action=add&clear='true' ?>"."Add New "."</a></th>"?>
     </tbody>
 <?php foreach($companies as $company): ?>
     <?php echo "<tr><td><b>".$company->company_name."</b></td>"; ?>
-    <?php echo "<td><img src='../images/spacer1.png'><a href=update_company.php?id={$company->id}&action=add&clear='true' ?>"."Add"."</a><img src='../images/spacer1.png'></td>"?>
+
     <?php echo "<td><img src='../images/spacer1.png'><a href='#'><a href=update_company.php?id={$company->id}&action=edit&clear='true' ?>"."Edit"."</a><img src='../images/spacer1.png'></td>"?>
     <?php echo "<td><a href=update_company.php?id={$company->id}&action=del&clear='true' ?>"."Delete"."</a><img src='../images/spacer1.png'></td>"?>
     <?php endforeach ?>

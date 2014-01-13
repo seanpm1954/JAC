@@ -19,4 +19,16 @@ class Company extends DatabaseObject{
 
     }
 
+    static public function saveName($cName){
+        global $db;
+        $sql="insert into company (company_name) values ('{$cName}')";
+        if($db->query($sql)){
+           $id = $db->insert_id();
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
 }//end class

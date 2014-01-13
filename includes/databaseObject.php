@@ -76,14 +76,6 @@ private function has_attribute($attribute){
         if(static::$table_name=='user'){
             $attributes1= array_shift($attributes);
         }
-        //proj_file_loc table
-        //pop last 3 items in proj_file_loc array
-        if(static::$table_name=='proj_file_loc'){
-            for($i=0;$i<3;$i++){
-            $attributes1= array_pop($attributes);
-        } //the remove id
-            $attributes1= array_shift($attributes);
-        }
 
         //resume for all db's
         $sql = "insert into ".static::$table_name." (";
