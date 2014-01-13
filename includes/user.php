@@ -34,4 +34,5 @@ public static function authenticate($username, $password){
 	return !empty($result_array) ? array_shift($result_array) : false;
 }
 
+
 }//end class

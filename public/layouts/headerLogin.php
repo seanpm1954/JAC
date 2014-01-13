@@ -6,7 +6,7 @@
 		<body>
         <div id="logo"><img src="public/images/JAC.png"  />
 			<div id="header">
-				<h1>JAC Client Portal</h1>
+                <h1>Client Login</h1>
 			</div>
 			<div id="main">
 

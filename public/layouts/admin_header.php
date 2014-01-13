@@ -6,7 +6,7 @@
 		<body>
         <div id="logo"><img src="../images/JAC.png"  />
 			<div id="header">
-				<h1>Client Portal: Admin</h1>
+				<h1><?php echo $_SESSION['cName'].": ";  ?>Admin</h1>
 			</div>
             <div id="main">
                 <h2>Menu</h2>
