@@ -35,6 +35,10 @@ $companies = Company::find_all();
     <?php endforeach ?>
 
 </table>
+
+<!--FOR ADDING CO-->
+<?php //$comp1= $company->company_name ?>
+<?php //$comp1=preg_replace('/[^A-Za-z0-9]/', "",$comp1) ?>
 <br/>
 
 </div>

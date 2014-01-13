@@ -17,6 +17,6 @@
                     <li><a href="project.php">Projects</a></li>
                     <li><a href="file_upload.php">Upload Project Files</a></li>
                     <li><a href="logfile.php">View Log file</a></li>
-                    <li><a href="logout.php">Logout</a></li>
+                    <li><a href="../../logout.php">Logout</a></li>
                 </ul>
                 </nav>

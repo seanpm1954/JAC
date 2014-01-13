@@ -1,9 +1,9 @@
 <?php
-require_once("../includes/initialize.php");
+require_once("includes/initialize.php");
 
 if($session->is_logged_in() ) {
     if($session->access==0){
-        redirect_to('admin/index.php');
+        redirect_to('public/admin/index.php');
     }else{
         redirect_to('public/index.php');
     }
@@ -35,14 +35,14 @@ if (isset($_POST['submit'])) { // Form has been submitted.
               $messageTxt="";
               $messageTxt .= "Admin: {$username} logged in at ".strftime('%m/%d/%Y %H:%M', time());
               log_action($action,$messageTxt);
-              redirect_to("admin/index.php");
+              redirect_to("public/admin/index.php");
       }elseif($found_user->access==2){
               $session->login($found_user);
               $action = "login";
               $messageTxt="";
               $messageTxt .= "User: {$username} logged in at ".strftime('%m/%d/%Y %H:%M', time());
               log_action($action,$messageTxt);
-              redirect_to("index.php");
+              redirect_to("public/index.php");
       }else{
           $session->message("access: ".$found_user->access);
       }
@@ -66,7 +66,9 @@ if (isset($_POST['submit'])) { // Form has been submitted.
 ?>
 <?php include_layout_template('headerLogin.php'); ?>
 		<h2>Client Login</h2>
-		<?php echo output_message($message); ?>
+		<?php echo output_message($message);
+            echo $_SERVER['REMOTE_ADDR'];
+        ?>
 
 		<form action="login.php" method="post">
 		  <table>

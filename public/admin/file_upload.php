@@ -7,37 +7,30 @@ if(!$session->is_logged_in() || !$session->access==1){
 }
 ?>
 <?php
-$max_file_size = 1048576;
-
-if(isset($_POST['submit'])){
-    $upload = new ProjectFiles();
-    $upload->attach_file($_FILES['file_upload']);
-    if($upload->save()){
-       $session->message("Document was successfully uploaded");
-        redirect_to('file_upload.php');
-    }else{
-        $message= join("<br/>", $upload->errors);
-    }
-
-}
+$companies= Company::find_all();
+$projects = Project::find_all();
 ?>
 <?php include_layout_template('admin_header.php'); ?>
 
     <h2>File Upload</h2>
+    <h3>Select project to upload to:</h3>
 <?php echo output_message($message); ?>
+    <ul>
+        <?php foreach($companies as $company): ?>
+            <?php echo "<li><b>".$company->company_name."</b></li>"; ?>
 
-<!--    add project_id-->
-<!--    add proj_file_loc-->
-<!--    get comp_name for directory-->
+            <?php foreach($projects as $project): ?>
+                <?php if($project->company_id == $company->id){ ?>
+                    <?php echo "<ul>"; ?>
+                    <?php $comp1= $company->company_name ?>
+                    <?php $comp1=preg_replace('/[^A-Za-z0-9]/', "",$comp1) ?>
+<!--                    --><?php //$proj= $project->project_name ?>
+<!--                    --><?php //$proj=preg_replace('/[^A-Za-z0-9]/', "",$proj) ?>
+                    <?php echo "<li><a href=upload.php?id={$project->id}&company={$comp1}>".$project->project_name."</a></li>"; ?>
+                    <?php echo "</ul>"; ?>
+                <?php }  endforeach; ?>
 
-    <form action="file_upload.php" enctype="multipart/form-data" method="post">
-        <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-        <p><input type="file" name="file_upload" /></p>
-        <p><input type="text" name="project_id" placeholder="ID" /></p>
-        <p><input type="text" name="proj_file_loc" placeholder="loc" /></p>
-        <input type="submit" name="submit" value="Upload" />
-
-    </form>
-
+        <?php endforeach; ?>
+    </ul>
 
 <?php include_layout_template('admin_footer.php'); ?>
