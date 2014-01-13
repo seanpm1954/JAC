@@ -1,35 +1,40 @@
 <?php
 require_once "../includes/initialize.php";
 
-if(!$session->is_logged_in()){ redirect_to("login.php");}
+if(!$session->is_logged_in()){
+    $session->message("You must be logged to access this page");
+    redirect_to("../login.php");
+}
 ?>
 <?php
-$max_file_size = 1048576;
+$projects = Project::find_all();
+$project_files= ProjectFiles::find_all();
+$up_dir = SITE_ROOT.DS."uploads".DS;
+$comp=$_SESSION['cName'];
+$cID =$_SESSION['cID'];
 
-if(isset($_POST['submit'])){
-    $upload = new ProjectFiles();
-    $upload->attach_file($_FILES['file_upload']);
-    if($upload->save()){
-        $session->message("Document was successfully uploaded");
-        redirect_to('view_photos.php');
-    }else{
-        $message= join("<br/>", $upload->errors);
-    }
-
-}
 ?>
 <?php include_layout_template('header.php'); ?>
 
-    <h2>Photo Upload</h2>
+    <h2>File Upload</h2>
+    <h3>Select project to upload to:</h3>
 <?php echo output_message($message); ?>
+    <ul>
 
-    <form action="file_upload.php" enctype="multipart/form-data" method="post">
-        <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-        <p><input type="file" name="file_upload" /></p>
-        <p>Caption: <input type="text" name="caption" value="" /> </p>
-        <input type="submit" name="submit" value="Upload" />
+            <?php echo "<li><b>".$comp."</b></li>"; ?>
 
-    </form>
+            <?php foreach($projects as $project): ?>
+                <?php if($project->company_id == $cID){ ?>
+                    <?php echo "<ul>"; ?>
+                    <?php $comp1= $comp; ?>
+                    <?php $comp1=preg_replace('/[^A-Za-z0-9]/', "",$comp1) ?>
+                    <!--                    --><?php //$proj= $project->project_name ?>
+                    <!--                    --><?php //$proj=preg_replace('/[^A-Za-z0-9]/', "",$proj) ?>
+                    <?php echo "<li><a href=upload.php?id={$project->id}&company={$comp1}>".$project->project_name."</a></li>"; ?>
+                    <?php echo "</ul>"; ?>
+                <?php }  endforeach; ?>
 
+
+    </ul>
 
 <?php include_layout_template('footer.php'); ?>

@@ -44,6 +44,7 @@ if (isset($_POST['submit'])) { // Form has been submitted.
               $messageTxt .= "User: {$username} logged in at ".strftime('%m/%d/%Y %H:%M', time());
               log_action($action,$messageTxt);
               $_SESSION['cName'] = Company::get_cName($found_user->company_id);
+              $_SESSION['cID'] = $found_user->company_id;
               redirect_to("public/index.php");
       }else{
           $session->message("access: ".$found_user->access);
