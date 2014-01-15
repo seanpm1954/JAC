@@ -23,14 +23,27 @@ if(!empty($_POST['submit']) && !empty($_POST["newComp"])&& !empty($_POST["compan
 
 
 }else if(!empty($_POST['submit1']) && !empty($_POST["newComp"])){
-    $session->message("Name cannot be blank !");
-    redirect_to('company.php');
-    exit();
+    $comp1= $_POST['newComp'];
+    $comp1=preg_replace('/[^A-Za-z0-9]/', "",$comp1);
+
+    if(Company::saveName($_POST['newComp'])){
+        $newDir = SITE_ROOT.DS."uploads".DS.$comp1;
+        $chkDir = is_dir($newDir);
+        if($chkDir == false){
+            mkdir($newDir,0777);
+            chmod($newDir, 0777);
+        }
+        $session->message($_POST['newComp'." added."]);
+        redirect_to('company.php');
+    }else{
+        $session->message($_POST['newComp'." was not added."]);
+        redirect_to('company.php');
+    }
+
 }else{
+    $session->message("Company name cannot be blank");
     redirect_to('company.php');
-    $session->message("Name cannot be blank1 !");
-    exit();
-};
+}
 
 ?>
 <?php echo output_message($message); ?>
