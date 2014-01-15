@@ -69,9 +69,9 @@ if (isset($_POST['submit'])) { // Form has been submitted.
 ?>
 <?php include_layout_template('headerLogin.php'); ?>
 		<?php echo output_message($message);
-            echo $_SERVER['REMOTE_ADDR'];
+            echo "<br/>Logged in from: ".$_SERVER['REMOTE_ADDR'];
         ?>
-
+        <br/>
 		<form action="login.php" method="post">
 		  <table>
 		    <tr>

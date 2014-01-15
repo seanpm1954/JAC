@@ -1,5 +1,5 @@
 <?php
-require_once LIB_PATH.DS."database.php";
+require_once LIB_PATH . DS . "database.php";
 class ProjectFiles extends DatabaseObject {
     protected static $table_name ="projectfiles";
     protected static $db_fields = array('proj_file_id', 'project_id', 'proj_file_loc');

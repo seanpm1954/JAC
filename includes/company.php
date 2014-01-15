@@ -13,9 +13,10 @@ class Company extends DatabaseObject{
         $sql="select company_name from company where id={$id} limit 1";
 
         $result = $db->query($sql);
-        $row = $result->fetch_assoc();
+        $row = $result->fetch_array();
 
         return $row['company_name'];
+
 
     }
 
@@ -28,6 +29,14 @@ class Company extends DatabaseObject{
         }else{
             return false;
         }
+
+    }
+
+    static public function updateName($id,$cName){
+        global $db;
+        $sql="update company set company_name='{$cName}' where id={$id}";
+        $db->query($sql);
+         return ($db->affected_rows() == 1) ? true : false;
 
     }
 
