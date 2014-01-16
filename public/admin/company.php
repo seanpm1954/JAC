@@ -18,6 +18,7 @@ if(isset($_GET['clear'])){
 $companies = Company::find_all();
 ?>
     <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+
 <?php include_layout_template('admin_header.php'); ?>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -42,6 +43,7 @@ $companies = Company::find_all();
                         }
                     });
             });
+
         });
 
 

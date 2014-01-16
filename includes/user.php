@@ -41,28 +41,42 @@ public static function authenticate($username, $password){
         $result_set = $db->query($sql);
         //$object_array = array();
         while ($row = $db->fetch_array($result_set)){
-            $object_array[] = $row;
+            //$object_array[] = $row;
             //echo "<option value='$row->id'>test</option>";
             echo '<option value="'. $row['id'] .'">'. $row['first_name'] . " ". $row['last_name'].'</option>';
         }
-        return $object_array;
+        //return $object_array;
 }
 
-//    static public function updateName1($id,$username1='',$password1='',$first_name1='',$last_name1='', $email1=''){
-//        global $db;
-//        $sql="update user set username='{$username1}',password='{$password1}',first_name='{$first_name1}',last_name='{$last_name1}',email='{$email1}' where id={$id}";
-//        $db->query($sql);
-//        return ($db->affected_rows() == 1) ? true : false;
-//
-//    }
-
-    static public function updateName1($id,$first_name1=''){
+    public  function get_details($comp_id){
         global $db;
-        $sql="update user set first_name='{$first_name1}' where id={$id}";
+        $sql  = "select username,password,first_name,last_name,email from user ";
+        $sql .= "where id ='{$comp_id}' limit 1";
+        $result_set = $db->query($sql);
+        $object_array = array();
+        while ($row = $db->fetch_array($result_set)){
+            $object_array[] = $row;
+            //echo '<option value="'. $row['username'] .'">'. $row['first_name'] . " ". $row['last_name'].'</option>';
+            //echo '<input type="text" value="'. $row['first_name'] .'">';
+        }
+        echo json_encode($object_array);
+    }
+
+    static public function updateName1($id,$username1,$password1,$first_name1,$last_name1, $email1){
+        global $db;
+        $sql="update user set username='{$username1}',password='{$password1}',first_name='{$first_name1}',last_name='{$last_name1}',email='{$email1}' where id={$id}";
         $db->query($sql);
         return ($db->affected_rows() == 1) ? true : false;
 
     }
+
+//    static public function updateName1($id,$first_name1=''){
+//        global $db;
+//        $sql="update user set first_name='{$first_name1}' where id={$id}";
+//        $db->query($sql);
+//        return ($db->affected_rows() == 1) ? true : false;
+//
+//    }
 
 
 }//end class

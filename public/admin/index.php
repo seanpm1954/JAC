@@ -6,6 +6,7 @@ if(!$session->is_logged_in() || !$session->access==1){
     redirect_to("../login.php");
 }
 ?>
+
 <?php include_layout_template('admin_header.php'); ?>
 
 		</div>

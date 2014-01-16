@@ -18,7 +18,7 @@ if(isset($_GET['clear'])){
 $companies = Company::find_all();
 $users = User::find_all();
 ?>
-    <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.2.js" xmlns="http://www.w3.org/1999/html"></script>
 <?php include_layout_template('admin_header.php'); ?>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -48,26 +48,39 @@ $users = User::find_all();
                 mTxtName = $("#user_id :selected").text();
                 $('#u_id').val(mTxtID);
                 $('#company_name').val(mTxtName);
-
+//                var e = document.getElementById('primary');
+//                e.style.display = 'block';
                 //get all user fields here
 
                 $.ajax({
                     type: "GET",
-                    url: "add_user.php",
-                    data: "id="+ mTxtID
+                    dataType: 'json',
+                    url: "get_user.php",
+                    data: {id: mTxtID},
+                    success: function(data){
+                        //alert(serverResponse);
+                        $('#newUsername').val(data[0].username);
+                        $('#newPassword').val(data[0].password);
+                        $('#newFirst').val(data[0].first_name);
+                        $('#newLast').val(data[0].last_name);
+                        $('#newEmail').val(data[0].email);
+                    }
                 });
+
+
 
             });
 
             $(function () {
-                $("#newFirst").bind("change keyup",
+                $("#newUsername").bind("change keyup",
                     function () {
-                        if ($("#company_name").val() != "" && $("#newFirst").val() != ""){
+                        if ($("#newUsername").val() != "" || $("#newPassword").val() != ""){
                             $("#submit").removeAttr("disabled");
-
-                        }else if ( $("#newFirst").val() != ""){
+                            alert('change name here');
+                        }else if ( $("#newUsername").val() != ""){
                             //console.log('new');
                             $("#submit1").removeAttr("disabled");
+                            alert('add new name here');
                         }
                     });
             });
@@ -97,28 +110,38 @@ echo '</select>';
 
 ?>
 
-    <form  id="fComp" action="add_user.php" method="post">
+<!--    <form  id="fComp" action="add_user.php" method="post">-->
+    <form  id="fComp" >
         <div class="textInput">
             <div class="primary">
-                <label for="company_name">Change :</label>
-                <input type="text" name="company_name" id="company_name" readonly>
+<!--                <label for="company_name">Change :</label>-->
+                <input type="hidden" name="company_name" id="company_name" readonly>
                 <input type="hidden" name="comp_id" id="comp_id" >
                 <input type="hidden" name="u_id" id="u_id" >
+                <br/>
 
                 <div class="secondary">
-                    <label for="newComp">To :</label>
+                    <label for="newUsername">Username :</label>
                     <input type="text" name="newUsername" id="newUsername" placeholder="New Username">
+                    <label for="newUsername">Password :</label>
                     <input type="text" name="newPassword" id="newPassword" placeholder="New Password">
+                    <label for="newUsername">First :</label>
                     <input type="text" name="newFirst" id="newFirst" placeholder="New First">
+                    <label for="newUsername">Last :</label>
                     <input type="text" name="newLast" id="newLast" placeholder="New Last">
-                    <input type="text" name="newEmail" id="newEmail" placeholder="New Email"><br/>
+                    <label for="newUsername">Email :</label>
+                    <input type="text" name="newEmail" id="newEmail" placeholder="New Email">
+                    <br/><br/>
                     <input name="submit" class="submit" id="submit" type='submit' value='Edit' disabled="disabled"/>
                     <input name="submit1" class="submit1" id="submit1" type='submit' value='Add' disabled="disabled"/>
                     <input type="button" class="cancel" name="cancel" value="cancel" onClick="window.location='user.php';" />
+
+                </div>
                 </div>
             </div>
-        </div>
+
     </form>
+    <div id="output" align="center">
 </div>
 
 <?php include_layout_template('admin_footer.php'); ?>
