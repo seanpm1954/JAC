@@ -13,7 +13,8 @@
                 <nav class="cf">
                 <ul >
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="company.php">Companies Add/Edit</a></li>
+                    <li><a href="company.php">Companies</a></li>
+                    <li><a href="user.php">Users</a></li>
                     <li><a href="project.php">Projects</a></li>
                     <li><a href="file_upload.php">Upload Project Files</a></li>
                     <li><a href="logfile.php">View Log file</a></li>

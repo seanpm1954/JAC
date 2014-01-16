@@ -17,6 +17,13 @@ public static function find_by_id($id=0){
 		return !empty($result_array) ? array_shift($result_array) : false;
 }
 
+    public static function find_by_id1($id=0){
+        global $db;
+        $result_array = static::find_by_sql("select * from ".static::$table_name." where company_id={$id}");
+
+        return !empty($result_array) ? array_shift($result_array) : false;
+    }
+
 public static function find_by_sql($sql=""){
 		global $db;
 		$result_set = $db->query($sql);
