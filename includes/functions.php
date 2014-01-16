@@ -38,7 +38,7 @@ function include_layout_template($template="") {
 }
 
 function log_action($action, $message=""){
-    $file = '../logs/logfile.txt';
+    $file = 'logs/logfile.txt';
     if($handle = fopen($file, 'a')){
         fwrite($handle,"action: ".$action." message: ".$message."\n");
 

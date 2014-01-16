@@ -34,3 +34,4 @@ $projects = Project::find_all();
     </ul>
 
 <?php include_layout_template('admin_footer.php'); ?>
+<?php if(isset($db)){ $db->close_connection(); } ?>

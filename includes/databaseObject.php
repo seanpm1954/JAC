@@ -17,6 +17,13 @@ public static function find_by_id($id=0){
 		return !empty($result_array) ? array_shift($result_array) : false;
 }
 
+    public static function find_by_id1($id=0){
+        global $db;
+        $result_array = static::find_by_sql("select * from ".static::$table_name." where company_id={$id}");
+
+        return !empty($result_array) ? array_shift($result_array) : false;
+    }
+
 public static function find_by_sql($sql=""){
 		global $db;
 		$result_set = $db->query($sql);
@@ -74,14 +81,6 @@ private function has_attribute($attribute){
         //USER Table
         //take off id from 1st element in array
         if(static::$table_name=='user'){
-            $attributes1= array_shift($attributes);
-        }
-        //proj_file_loc table
-        //pop last 3 items in proj_file_loc array
-        if(static::$table_name=='proj_file_loc'){
-            for($i=0;$i<3;$i++){
-            $attributes1= array_pop($attributes);
-        } //the remove id
             $attributes1= array_shift($attributes);
         }
 

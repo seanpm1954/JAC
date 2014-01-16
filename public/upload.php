@@ -1,8 +1,8 @@
 <?php
-require_once "../../includes/initialize.php";
+require_once "../includes/initialize.php";
 
-if(!$session->is_logged_in() || !$session->access==1){
-    $session->message("You must login and be an admin to access this page");
+if(!$session->is_logged_in()){
+    $session->message("You must be logged to access this page");
     redirect_to("../login.php");
 }
 ?>
@@ -21,7 +21,7 @@ if(isset($_POST['submit'])){
 
 }
 ?>
-<?php include_layout_template('admin_header.php'); ?>
+<?php include_layout_template('header.php'); ?>
 
     <h2>File Upload</h2>
 <?php echo output_message($message);
@@ -52,4 +52,4 @@ if(isset($_GET['id'])){
     </form>
 
 
-<?php include_layout_template('admin_footer.php'); ?>
+<?php include_layout_template('footer.php'); ?>

@@ -35,6 +35,7 @@ if (isset($_POST['submit'])) { // Form has been submitted.
               $messageTxt="";
               $messageTxt .= "Admin: {$username} logged in at ".strftime('%m/%d/%Y %H:%M', time());
               log_action($action,$messageTxt);
+              $_SESSION['cName'] = Company::get_cName($found_user->company_id);
               redirect_to("public/admin/index.php");
       }elseif($found_user->access==2){
               $session->login($found_user);
@@ -42,6 +43,8 @@ if (isset($_POST['submit'])) { // Form has been submitted.
               $messageTxt="";
               $messageTxt .= "User: {$username} logged in at ".strftime('%m/%d/%Y %H:%M', time());
               log_action($action,$messageTxt);
+              $_SESSION['cName'] = Company::get_cName($found_user->company_id);
+              $_SESSION['cID'] = $found_user->company_id;
               redirect_to("public/index.php");
       }else{
           $session->message("access: ".$found_user->access);
@@ -65,11 +68,10 @@ if (isset($_POST['submit'])) { // Form has been submitted.
 
 ?>
 <?php include_layout_template('headerLogin.php'); ?>
-		<h2>Client Login</h2>
 		<?php echo output_message($message);
-            echo $_SERVER['REMOTE_ADDR'];
+            echo "<br/>Logged in from: ".$_SERVER['REMOTE_ADDR'];
         ?>
-
+        <br/>
 		<form action="login.php" method="post">
 		  <table>
 		    <tr>

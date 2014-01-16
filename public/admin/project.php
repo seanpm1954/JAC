@@ -42,7 +42,7 @@ $comp="";
 
 		</div>
 	 <?php include_layout_template('admin_footer.php'); ?>
-
+<?php if(isset($db)){ $db->close_connection(); } ?>
 <!--chk user lgged in for downloads-->
 <!--$name = 'MyPDF.pdf';-->
 <!--$filename = 'data/pdf_12345.pdf';-->
