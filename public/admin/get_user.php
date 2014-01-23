@@ -9,7 +9,7 @@ if(!$session->is_logged_in() || !$session->access==1){
 <?php
 if(!empty($_GET["id"])){
     $comp_id = $_GET['id'];
-    //$session->message("UserID ". $comp_id);
+    $session->message("UserID ". $comp_id);
 
     $user = new User();
     $users= $user->get_details($comp_id);

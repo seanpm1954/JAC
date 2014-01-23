@@ -7,12 +7,15 @@ if(!$session->is_logged_in() || !$session->access==1){
 }
 ?>
 <?php
-if(!empty($_POST['submit']) && !empty($_POST['u_id'])&& !empty($_POST['company_name'])){
-    $comp_name = $_POST['company_name'];
+if(!empty($_POST['submit']) && !empty($_POST['u_id'])){
     $comp_id = $_POST['u_id'];
-    $new_name = $_POST['newFirst'];
+    $new_first = $_POST['newFirst'];
+    $new_userName = $_POST['newUsername'];
+    $new_last = $_POST['newLast'];
+    $new_email = $_POST['newEmail'];
+    $new_pwd = $_POST['newPassword'];
 
-    if(User::updateName1($comp_id,$new_name)){
+    if(User::updateName1($comp_id,$new_userName,$new_pwd,$new_first,$new_last,$new_email)){
         $session->message("name change successful.");
         redirect_to('user.php');
     }else{
@@ -21,7 +24,7 @@ if(!empty($_POST['submit']) && !empty($_POST['u_id'])&& !empty($_POST['company_n
     }
 
 
-}else if(!empty($_POST['submit1']) && !empty($_POST["newFirst"])){
+}else if(!empty($_POST['submit1'])){
 
 
     if(User::saveName($_POST['newFirst'])){
