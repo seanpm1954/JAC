@@ -2,6 +2,9 @@
 	<head>
 		<title>JAC Client Portal: Admin</title>
         <link rel="stylesheet" type="text/css" href="../css/main.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/SpryValidationTextField.css" media="all">
+        <script src="../js/SpryValidationTextField.js" type="text/javascript"></script>
+
     </head>
 		<body>
         <div id="logo"><img src="../images/JAC.png"  />

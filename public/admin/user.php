@@ -30,8 +30,14 @@ $users = User::find_all();
             $('.editComp').on('click', function(){
                 mTxt = $("#id :selected").text();
                var mID = $("#id :selected").val();
-
+                $('#newUsername').val("");
+                $('#newPassword').val("");
+                $('#newFirst').val("");
+                $('#newLast').val("");
+                $('#newEmail').val("");
                 $('#comp_id').val(mID);
+                $("#fComp").removeAttr("hidden");
+                $("#fComp1").attr("hidden","true");
                 $.ajax({
                     type: "GET",
                     url: "edit_user.php",
@@ -46,6 +52,8 @@ $users = User::find_all();
             $('.user_id').on('click', function(){
                 mTxtID = $("#user_id :selected").val();
                 mTxtName = $("#user_id :selected").text();
+                $("#fComp1").removeAttr("hidden");
+                $("#fComp").attr("hidden","true");
                 $('#u_id').val(mTxtID);
                 $('#company_name').val(mTxtName);
 
@@ -68,20 +76,6 @@ $users = User::find_all();
 
 
             });
-
-//            $(function () {
-//                $("#newUsername").bind("change keyup",
-//                    function () {
-//                        if ($("#newUsername").val() != "" || $("#newPassword").val() != ""){
-//                            $("#submit").removeAttr("disabled");
-//                            //alert('change name here');
-//                        }else if ( $("#newUsername").val() != ""){
-//                            //console.log('new');
-//                            $("#submit1").removeAttr("disabled");
-//                            //alert('add new name here');
-//                        }
-//                    });
-//            });
 
 
         });
@@ -108,18 +102,19 @@ echo '</select>';
 
 ?>
 
-<form  id="fComp" action="add_user.php" method="post">
+<form  id="fComp1" action="add_user.php" method="post" hidden="hidden">
         <div class="textInput">
-            <div class="primary">
+            <div class="secondary">
                <label for="company_name">Change :</label>
-                <input type="hidden" name="company_name" id="company_name" readonly>
-                <input type="hidden" name="comp_id" id="comp_id" >
-                <input type="hidden" name="u_id" id="u_id" >
+                <input type="hidden" name="company_name" id="company_name1" readonly>
+                <input type="hidden" name="comp_id" id="comp_id1" >
+                <input type="hidden" name="u_id" id="u_id1" >
                 <br/>
 
-                <div class="secondary">
+<!--                <div class="secondary">-->
                     <label for="newUsername">Username :</label>
-                    <input type="text" name="newUsername" id="newUsername" placeholder="New Username">
+                    <span id="spryUserName1"><input type="text" name="newUsername" id="newUsername" placeholder="New Username">
+                    <span class="textfieldRequiredMsg">A value is required.</span></span>
                     <label for="newPassword">Password :</label>
                     <input type="text" name="newPassword" id="newPassword" placeholder="New Password">
                     <label for="newFirst">First :</label>
@@ -130,12 +125,42 @@ echo '</select>';
                     <input type="text" name="newEmail" id="newEmail" placeholder="New Email">
                     <br/><br/>
                     <input name="submit" class="submit" id="submit" type='submit' value='Edit' />
-                    <input name="submit1" class="submit1" id="submit1" type='submit' value='Add' disabled="disabled"/>
                     <input type="button" class="cancel" name="cancel" value="cancel" onClick="window.location='user.php';" />
 
-                </div>
+<!--                </div>-->
                 </div>
             </div>
+
+    </form>
+<!--Form to Add new-->
+    <form  id="fComp" action="add_user1.php" method="post" hidden="hidden">
+        <div class="textInput">
+            <div class="secondary">
+                <label for="company_name">Add :</label>
+                <input type="hidden" name="company_name" id="company_name" readonly>
+                <input type="hidden" name="comp_id" id="comp_id" >
+                <input type="hidden" name="u_id" id="u_id" >
+                <br/>
+
+                <!--                <div class="secondary">-->
+                <label for="newUsername">Username :</label>
+                    <span id="spryUserName"><input type="text" name="newUsername" id="newUsername" placeholder="New Username">
+                    <span class="textfieldRequiredMsg">A usename is required.</span></span>
+                <span id="spryPassword"><label for="newPassword">Password :</label>
+                <input type="text" name="newPassword" id="newPassword" placeholder="New Password"><span class="textfieldRequiredMsg">A password is required.</span></span>
+                <label for="newFirst">First :</label>
+                <span id="spryFirst"><input type="text" name="newFirst" id="newFirst" placeholder="New First"><span class="textfieldRequiredMsg">A First Name is required.</span></span>
+                <label for="newLast">Last :</label>
+                <span id="spryLast"><input type="text" name="newLast" id="newLast" placeholder="New Last"><span class="textfieldRequiredMsg">A Last Name is required.</span></span>
+                <label for="newEmail">Email :</label>
+                <span id="spryEmail"><input type="text" name="newEmail" id="newEmail" placeholder="New Email"><span class="textfieldRequiredMsg">An Email is required.</span></span>
+                <br/><br/>
+                <input name="submit" class="submit" id="submit" type='submit' value='Add' />
+                <input type="button" class="cancel" name="cancel" value="cancel" onClick="window.location='user.php';" />
+
+                <!--                </div>-->
+            </div>
+        </div>
 
     </form>
     <div id="output" align="center">

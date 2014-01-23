@@ -69,6 +69,17 @@ public static function authenticate($username, $password){
         return ($db->affected_rows() == 1) ? true : false;
 
     }
+    static public function saveName($comp_id,$username1,$password1,$first_name1,$last_name1, $email1){
+        global $db;
+        $sql="insert into user (company_id,first_name,last_name,email,password,username,access,active) values ('{$comp_id}','{$first_name1}','{$last_name1}','{$email1}','{$password1}','{$username1}',1,0)";
+        if($db->query($sql)){
+            $id = $db->insert_id();
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 
 //    static public function updateName1($id,$first_name1=''){
 //        global $db;
