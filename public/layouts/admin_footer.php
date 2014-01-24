@@ -13,6 +13,9 @@
     var spryFirst = new Spry.Widget.ValidationTextField("spryFirst");
     var spryLast = new Spry.Widget.ValidationTextField("spryLast");
     var spryEmail = new Spry.Widget.ValidationTextField("spryEmail");
+
+    var spryProjectName = new Spry.Widget.ValidationTextField("spryProjectName");
+
 </script>
   </body>
 </html>

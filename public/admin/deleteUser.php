@@ -8,9 +8,12 @@ if(!$session->is_logged_in() || !$session->access==1){
 
 <?php
 if(!empty($_GET["id"])){
-    $comp_id = $_GET['id'];
-    $user = new User();
-    $users= $user->get_details($comp_id);
+    $user_id = $_GET['id'];
+        User::deleteUser($user_id);
+        $session->message("User deleted");
+}else{
+    $session->message("User not deleted");
+    //redirect_to('user.php');
 }
 if(isset($db)){ $db->close_connection(); }
 ?>

@@ -23,6 +23,29 @@ $users = User::find_all();
     <script type="text/javascript">
         $(document).ready(function(){
 
+
+            $('.submit2').on('click', function(){
+                //delete user
+            var $userID = $("#user_id :selected").val();
+                var $username = $("#user_id :selected").text();
+                var $answer = confirm ("Delete " + $username + "? This cannot be undone!");
+                if ($answer)
+                {
+                    $.ajax({
+                    type: "GET",
+                    url: "deleteUser.php",
+                    data: "id="+ $userID,
+                    success: function(data){
+                        window.location.href = 'user.php';
+                    }
+                });
+
+                }else{
+                    window.location.href = 'user.php';
+                }
+
+            });
+
             var mTxt ='';
             var mTxtID ='';
             var mTxtName ='';
@@ -38,6 +61,7 @@ $users = User::find_all();
                 $('#comp_id').val(mID);
                 $("#fComp").removeAttr("hidden");
                 $("#fComp1").attr("hidden","true");
+                $("#deleteUser").attr("hidden","true");
                 $.ajax({
                     type: "GET",
                     url: "edit_user.php",
@@ -52,6 +76,7 @@ $users = User::find_all();
             $('.user_id').on('click', function(){
                 mTxtID = $("#user_id :selected").val();
                 mTxtName = $("#user_id :selected").text();
+                $("#deleteUser").removeAttr("hidden");
                 $("#fComp1").removeAttr("hidden");
                 $("#fComp").attr("hidden","true");
                 $('#u_id').val(mTxtID);
@@ -77,7 +102,6 @@ $users = User::find_all();
 
             });
 
-
         });
 
 
@@ -101,15 +125,21 @@ echo '</select>';
 
 
 ?>
-
+<!--edit user-->
 <form  id="fComp1" action="add_user.php" method="post" hidden="hidden">
         <div class="textInput">
             <div class="secondary">
+<!--                delete user-->
+                <form  id="deleteUser" method="get" hidden="hidden">
+                    <input name="submitDel" class="submit2" id="submitDel" type='button' value='Delete this user' />
+                    <br/>
+                </form>
+<!--                end delete user-->
                <label for="company_name">Change :</label>
                 <input type="hidden" name="company_name" id="company_name1" readonly>
                 <input type="hidden" name="comp_id" id="comp_id1" >
                 <input type="hidden" name="u_id" id="u_id1" >
-                <br/>
+
 
 <!--                <div class="secondary">-->
                     <label for="newUsername">Username :</label>
@@ -132,6 +162,7 @@ echo '</select>';
             </div>
 
     </form>
+
 <!--Form to Add new-->
     <form  id="fComp" action="add_user1.php" method="post" hidden="hidden">
         <div class="textInput">
@@ -163,6 +194,7 @@ echo '</select>';
         </div>
 
     </form>
+
     <div id="output" align="center">
 </div>
 

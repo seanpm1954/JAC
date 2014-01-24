@@ -78,9 +78,42 @@ table.bordered tr th, table.bordered tr td {
     background-color:#0b75b2;
 }
 
-/*.menu li.active a {*/
-    /*color: #474747;*/
-    /*background-color: #DFF0DB;*/
-/*}*/
+#submitDel{
+    cursor: hand;
+    display: block;
+    color: #8D0D19;
+    font-size: 16;
+    font-weight: bold;
+    width: 140px;
+    height: 30px;
+    border: solid;
+    margin: 0;
+    padding: 0;
+}
+.submit{
+    width: 70px;
+    height: 30px;
+    font-size: 2em;
+    font-weight: bold;
+}
+.cancel{
+    width: 70px;
+    height: 30px;
+    font-size: 2em;
+}
+
+.submit1{
+    width: 140px;
+    height: 30px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.submit2{
+    width: 140px;
+    height: 30px;
+    font-size: 2em;
+    font-weight: bold;
+}
 
 

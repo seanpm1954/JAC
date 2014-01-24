@@ -81,13 +81,12 @@ public static function authenticate($username, $password){
 
     }
 
-//    static public function updateName1($id,$first_name1=''){
-//        global $db;
-//        $sql="update user set first_name='{$first_name1}' where id={$id}";
-//        $db->query($sql);
-//        return ($db->affected_rows() == 1) ? true : false;
-//
-//    }
+static public function deleteUser($id){
+    global $db;
+    $sql = "delete from user  WHERE id='{$id}'";
+    $db->query($sql);
+    return ($db->affected_rows()==1) ? true : false;
+}
 
 
 }//end class
