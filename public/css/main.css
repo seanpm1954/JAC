@@ -116,4 +116,16 @@ table.bordered tr th, table.bordered tr td {
     font-weight: bold;
 }
 
+.submit3{
+    width: 60px;
+    height: 30px;
+    font-size: 2em;
+}
+
+.upload1 input{
+    padding: 10px;
+    width: 325px;
+    font-size: 14px;
+}
+
 

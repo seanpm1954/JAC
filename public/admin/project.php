@@ -73,11 +73,9 @@ $comp="";
                            <?php if($pfile->project_id == $project->id){ ?>
         <?php echo "<li><a href=\"../../uploads/$comp/{$pfile->proj_file_loc}\" target=\"_blank\">".$pfile->proj_file_loc."</a></li>"?>
                         <?php }  endforeach; ?>
-                    <br/>
                     <?php echo "</ul>"; ?>
                     <?php echo "</ul>"; ?>
                  <?php }  endforeach; ?>
-                    <br/>
         <?php endforeach; ?>
     </ul>
 

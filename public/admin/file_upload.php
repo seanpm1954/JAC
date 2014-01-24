@@ -13,7 +13,7 @@ $projects = Project::find_all();
 <?php include_layout_template('admin_header.php'); ?>
 
     <h2>File Upload</h2>
-    <h3>Select project to upload to:</h3>
+    <h3>Select project PDF for upload to:</h3>
 <?php echo output_message($message); ?>
     <ul>
         <?php foreach($companies as $company): ?>

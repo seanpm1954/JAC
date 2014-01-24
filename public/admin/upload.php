@@ -10,14 +10,26 @@ if(!$session->is_logged_in() || !$session->access==1){
 $max_file_size = 1048576;
 
 if(isset($_POST['submit'])){
-    $upload = new ProjectFiles();
-    $upload->attach_file($_FILES['file_upload']);
-    if($upload->save()){
-       $session->message("Document was successfully uploaded");
-        redirect_to('project.php');
+    $filename = basename($_FILES['file_upload']['name']);
+    $ext = substr($filename, strrpos($filename, '.') + 1);
+    if($ext == "pdf"){
+        $upload = new ProjectFiles();
+        $upload->attach_file($_FILES['file_upload']);
+        if($upload->save()){
+            $message=("Document was successfully uploaded");
+            $session->message($message);
+            redirect_to('project.php');
+        }else{
+            $message= join("<br/>", $upload->errors);
+            $session->message($message);
+            redirect_to('project.php');
+        }
     }else{
-        $message= join("<br/>", $upload->errors);
+       $message=("<b><font color='red'>Document must be a PDF</font></b>");
+        $session->message($message);
+        redirect_to('project.php');
     }
+
 
 }
 ?>
@@ -41,13 +53,13 @@ if(isset($_GET['id'])){
 <!--    add proj_file_loc-->
 <!--    get comp_name for directory-->
 
-    <form action="upload.php" enctype="multipart/form-data" method="post">
-        <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-        <p><input type="file" name="file_upload" /></p>
+    <form class="upload1" action="upload.php" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="MAX_FILE_SIZE" value="50000000" />
+        <p><input class="submit3" type="file" name="file_upload" /></p>
         <p><input type="hidden" name="project_id" <?php echo 'value="'.$cID.'"' ?> /></p>
         <p><input type="hidden" name="proj_file_loc" <?php echo 'value="'.$comp.'"' ?> /></p>
 <!--        <p><input type="hidden" name="proj" --><?php //echo 'value="'.$proj.'"' ?><!-- placeholder="loc" /></p>-->
-        <input type="submit" name="submit" value="Upload" />
+        <input class="submit3" type="submit" name="submit" value="Upload" />
 
     </form>
 
