@@ -22,6 +22,7 @@ $companies = Company::find_all();
 <?php include_layout_template('admin_header.php'); ?>
     <script type="text/javascript">
         $(document).ready(function(){
+            document.getElementById("fComp").style.display='block';
 
             var mTxt ='';
             $('.editComp').on('click', function(){
@@ -72,9 +73,9 @@ echo '</select>';
                 <div class="secondary">
                     <label for="newComp">To :</label>
                     <input type="text" name="newComp" id="newComp" placeholder="New Name">
-                    <input name="submit" class="submit" id="submit" type='submit' value='Edit' disabled="disabled"/>
-                    <input name="submit1" class="submit1" id="submit1" type='submit' value='Add' disabled="disabled"/>
-                    <input type="button" class="cancel" name="cancel" value="cancel" onClick="window.location='company.php';" />
+                    <input name="submit" class="submit4" id="submit" type='submit' value='Edit' disabled="disabled"/><br/>
+                    <input name="submit1" class="submit4" id="submit1" type='submit' value='Add' disabled="disabled"/><br/>
+                    <input type="button" class="submit4" name="cancel" value="cancel" onClick="window.location='company.php';" />
                 </div>
             </div>
         </div>

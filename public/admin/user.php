@@ -23,6 +23,10 @@ $users = User::find_all();
     <script type="text/javascript">
         $(document).ready(function(){
 
+<!--            ie Fix-->
+//            document.getElementById("fComp1").style.display='none';
+//            document.getElementById("fComp").style.display='none';
+            <!--            end Fix-->
 
             $('.submit2').on('click', function(){
                 //delete user
@@ -51,6 +55,7 @@ $users = User::find_all();
             var mTxtName ='';
             var items='';
             $('.editComp').on('click', function(){
+
                 mTxt = $("#id :selected").text();
                var mID = $("#id :selected").val();
                 $('#newUsername').val("");
@@ -59,26 +64,27 @@ $users = User::find_all();
                 $('#newLast').val("");
                 $('#newEmail').val("");
                 $('#comp_id').val(mID);
-                $("#fComp").removeAttr("hidden");
-                $("#fComp1").attr("hidden","true");
-                $("#deleteUser").attr("hidden","true");
                 $.ajax({
                     type: "GET",
                     url: "edit_user.php",
                     data: "company_id="+ mID,
                     success: function(html){
-                       // $('#company_name').val(html);
+                        // $('#company_name').val(html);
                         $("#user_id").html(html);
-                }
+                    }
                 });
+                document.getElementById("fComp").style.display='block';
+                document.getElementById("fComp1").style.display='none';
+                document.getElementById("deleteUser").style.display='none';
             });
 
             $('.user_id').on('click', function(){
                 mTxtID = $("#user_id :selected").val();
                 mTxtName = $("#user_id :selected").text();
-                $("#deleteUser").removeAttr("hidden");
-                $("#fComp1").removeAttr("hidden");
-                $("#fComp").attr("hidden","true");
+                document.getElementById("fComp").style.display='none';
+                document.getElementById("fComp1").style.display='block';
+                document.getElementById("deleteUser").style.display='block';
+
                 $('#u_id').val(mTxtID);
                 $('#company_name').val(mTxtName);
 
@@ -126,7 +132,8 @@ echo '</select>';
 
 ?>
 <!--edit user-->
-<form  id="fComp1" action="add_user.php" method="post" hidden="hidden">
+
+<form  id="fComp1" action="add_user.php" method="post">
         <div class="textInput">
             <div class="secondary">
 <!--                delete user-->
@@ -164,7 +171,7 @@ echo '</select>';
     </form>
 
 <!--Form to Add new-->
-    <form  id="fComp" action="add_user1.php" method="post" hidden="hidden">
+    <form  id="fComp" action="add_user1.php" method="post">
         <div class="textInput">
             <div class="secondary">
                 <label for="company_name">Add :</label>

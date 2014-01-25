@@ -56,10 +56,10 @@ $comp="";
 
     <h2>Projects</h2>
 <?php echo output_message($message); ?>
-<input name="submit1" class="submit1" id="submit1" type='submit' value='Add new project' />
+<input name="submit1" class="submit4" id="submit1" type='submit' value='Add new project' />
 <form id="projects">
 
-    <ul>
+    <ul class="flow">
         <?php foreach($companies as $company): ?>
             <?php echo "<li><b>".$company->company_name."</b></li>"; ?>
             <?php $comp= $company->company_name ?>
@@ -72,10 +72,10 @@ $comp="";
                         <?php foreach($project_files as $pfile): ?>
                            <?php if($pfile->project_id == $project->id){ ?>
         <?php echo "<li><a href=\"../../uploads/$comp/{$pfile->proj_file_loc}\" target=\"_blank\">".$pfile->proj_file_loc."</a></li>"?>
-                        <?php }  endforeach; ?>
+                        <?php }  endforeach; ?><br/>
                     <?php echo "</ul>"; ?>
                     <?php echo "</ul>"; ?>
-                 <?php }  endforeach; ?>
+                 <?php }  endforeach; ?><br/>
         <?php endforeach; ?>
     </ul>
 
@@ -96,7 +96,7 @@ $comp="";
     <input type="hidden" name="comp_id" id="comp_id">
     <span id="spryProjectName"><input type="text" name="projectName" id="projectName" placeholder="Project name" hidden="hidden">
                     <span class="textfieldRequiredMsg">A Project name is required.</span></span>
-    <input name="submit2" class="submit2" id="submit2" type='submit' value='Add new project' />
+    <input name="submit2" class="submit3" id="submit2" type='submit' value='Add new project' />
     <input type="button" class="cancel" name="cancel" value="cancel" onClick="window.location='project.php';" />
 </form>
 

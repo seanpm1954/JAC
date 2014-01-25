@@ -122,10 +122,36 @@ table.bordered tr th, table.bordered tr td {
     font-size: 2em;
 }
 
+.submit4{
+    width: 140px;
+    height: 30px;
+    font-size: 1em;
+}
+
 .upload1 input{
     padding: 10px;
     width: 325px;
     font-size: 14px;
+}
+
+.flow{
+    height: 400px;
+    width: 400px;
+    overflow: auto;
+}
+
+#fComp1{
+    display: none;
+
+}
+
+#fComp{
+    display: none;
+
+}
+
+#deleteUser{
+    display: none;
 }
 
 
